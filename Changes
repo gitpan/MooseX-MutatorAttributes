@@ -1,5 +1,8 @@
 Revision history for MooseX-Setter
 
-0.01    Date/time
+0.02    02.08.088
+        Modified the docs to better reflect the user of croak and better explain that it's a role.
+
+0.01    02.08.088
         First version, released on an unsuspecting world.
 

@@ -5,15 +5,15 @@ use Carp;
 
 =head1 NAME
 
-MooseX::MutatorAttributes - add a quick set method that returns self
+MooseX::MutatorAttributes - Moose Role to add a quick set method that returns self
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
@@ -26,7 +26,7 @@ I got tired of doing this:
 
 What I wanted to do was:
 
-    use MooseX::MutatorAttributes;
+    with qw{MooseX::MutatorAttributes};
     $obj->set( attr1 => $value1, attr2 => $value2 )->method_that_uses_attr;
 
 
@@ -38,7 +38,7 @@ Now I can, and so can you.
 
     $self->set( HASH );
 
-Set takes a hash, keys are expected to be attributes, if they are not then we Carp::cluck. If a key is an acceptable 
+Set takes a hash, keys are expected to be attributes, if they are not then we Carp::croak. If a key is an acceptable 
 attribute then we attempt to set with $value.
 
 =cut
