@@ -1,0 +1,10 @@
+Changes
+lib/MooseX/MutatorAttributes.pm
+Makefile.PL
+MANIFEST
+README
+t/00-works.t
+t/boilerplate.t
+t/pod-coverage.t
+t/pod.t
+META.yml                                 Module meta-data (added by MakeMaker)
