@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                MooseX-MutatorAttributes
-version:             0.02
+version:             0.03
 abstract:            Moose Role to add a quick set method that returns self
 license:             ~
 author:              
     - ben hengst <notbenh@cpan.org>
-generated_by:        ExtUtils::MakeMaker version 6.42
+generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
     Moose:                         0

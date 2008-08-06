@@ -9,11 +9,11 @@ MooseX::MutatorAttributes - Moose Role to add a quick set method that returns se
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
@@ -45,13 +45,15 @@ attribute then we attempt to set with $value.
 
 sub set {
    my ($self, %opts) = @_;
-   foreach my $attr (keys %opts) {
-      if ( defined $self->meta->{'%!attributes'}->{$attr} ) {
-         $self->$attr( $opts{$attr} );
-      }
-      else {
-         croak sprintf( q{[!!!] $s is not an attribute to set }, $attr);
-      }
+   while ( my ($name, $value) = each %opts ) {
+      croak sprintf q{[!!!] %s is not an attribute to set for %s}, $name, $self
+         unless defined $self->meta->find_attribute_by_name($name);
+      
+      my $setter = $self->meta->find_attribute_by_name($name)->get_write_method;
+      croak sprintf q{[!!!] %s is not writable, no setter defined}, $name
+         unless defined $setter;
+
+      $self->$setter($value);
    }
    return $self;
 }
@@ -101,6 +103,7 @@ L<http://search.cpan.org/dist/MooseX-MutatorAttributes>
 
 =head1 ACKNOWLEDGEMENTS
 
+This would not be possible with out stevan, mst, and everyone else who hangs out on #moose. 
 
 =head1 COPYRIGHT & LICENSE
 
