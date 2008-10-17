@@ -1,6 +1,7 @@
 package MooseX::MutatorAttributes;
 use Moose::Role;
 use Carp;
+use Carp::Assert::More;
 
 
 =head1 NAME
@@ -9,11 +10,11 @@ MooseX::MutatorAttributes - Moose Role to add a quick set method that returns se
 
 =head1 VERSION
 
-Version 0.03
+Version 0.10
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.10';
 
 
 =head1 SYNOPSIS
@@ -57,6 +58,45 @@ sub set {
    }
    return $self;
 }
+
+=head1 METHOD
+
+=head2 set_only_rw_attr
+
+    my $storage_href = {};
+    $self->set_only_rw_attr($storage_href, HASH );
+
+Set takes a hash, keys are expected to be attributes, but unlike set, we don't
+die. Instead we populate a given storage ref that was passed in. It's up to
+what to do with it. Post 'set' your $storage_href will hold all the 
+non-writeable-attrs (either was not an attr or was 'ro').
+
+If you wish to by-pass the storage part pass in an annon hashref {}. 
+
+=cut
+
+sub set_only_rw_attr {
+   my ($self, $store, %opts) = @_;
+   assert_hashref($store);
+   
+   while ( my ($name, $value) = each %opts ) {
+      my $setter = $self->meta->find_attribute_by_name($name)->get_write_method
+         if defined $self->meta->find_attribute_by_name($name) ; 
+
+      if ( defined $setter ) {
+         $self->$setter($value);
+      } 
+      else {
+         $store->{$name} = $value;
+      }
+   }
+   return $self;
+}
+
+
+
+
+
 
 =head1 AUTHOR
 
