@@ -10,11 +10,11 @@ MooseX::MutatorAttributes - Moose Role to add a quick set method that returns se
 
 =head1 VERSION
 
-Version 0.10
+Version 0.11
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 
 =head1 SYNOPSIS
@@ -58,8 +58,6 @@ sub set {
    }
    return $self;
 }
-
-=head1 METHOD
 
 =head2 set_only_rw_attr
 

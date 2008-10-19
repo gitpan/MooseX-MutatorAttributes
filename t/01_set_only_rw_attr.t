@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::Most qw{no_plan bail};
+use Test::More qw{no_plan};
 
 #-----------------------------------------------------------------
 #  
@@ -34,7 +34,7 @@ isa_ok(  $o,
 my $store = {};
 ok( $o->set_only_rw_attr( $store, num => 12, str => 'hello' ) );
 is( $o->num, 12);
-eq_or_diff (
+is_deeply (
    $store,
    { str => 'hello' },
 );
