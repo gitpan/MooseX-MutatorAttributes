@@ -1,5 +1,8 @@
 Revision history for MooseX-Setter
 
+0.11    02.11.08
+        Dropping the Pod test, apparently 'meta' is not podded anywhere thus the test fails. 
+
 0.11    18.10.08
         new test failed due to using Test::Most and not including it in the reqs, fixed.
 

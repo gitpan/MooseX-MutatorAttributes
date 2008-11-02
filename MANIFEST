@@ -5,7 +5,4 @@ MANIFEST
 README
 t/00-works.t
 t/01_set_only_rw_attr.t
-t/boilerplate.t
-t/pod-coverage.t
-t/pod.t
 META.yml                                 Module meta-data (added by MakeMaker)
